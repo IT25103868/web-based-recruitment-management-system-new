@@ -1,0 +1,6 @@
+{
+  "name": "CareerLink Sri Lanka",
+  "description": "Sri Lanka's premier career gateway and enterprise HR recruiting platform connecting top talent with leading employers.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
