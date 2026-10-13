@@ -67,7 +67,7 @@ public class JobPosting {
     }
 
     public JobPosting(Staff staff, String title, String description, String category,
-                       String location, Double salary, LocalDate deadline) {
+                      String location, Double salary, LocalDate deadline) {
         this();
         this.staff = staff;
         this.title = title;
@@ -77,6 +77,73 @@ public class JobPosting {
         this.salary = salary;
         this.deadline = deadline;
     }
+
+    // ==========================================
+    // DESIGN PATTERN: Builder Pattern Implementation
+    // ==========================================
+    public static class Builder {
+        private Staff staff;
+        private String title;
+        private String description;
+        private String category;
+        private String location;
+        private Double salary;
+        private LocalDate deadline;
+        private List<String> tags = new ArrayList<>();
+
+        public Builder staff(Staff staff) {
+            this.staff = staff;
+            return this;
+        }
+
+        public Builder title(String title) {
+            this.title = title;
+            return this;
+        }
+
+        public Builder description(String description) {
+            this.description = description;
+            return this;
+        }
+
+        public Builder category(String category) {
+            this.category = category;
+            return this;
+        }
+
+        public Builder location(String location) {
+            this.location = location;
+            return this;
+        }
+
+        public Builder salary(Double salary) {
+            this.salary = salary;
+            return this;
+        }
+
+        public Builder deadline(LocalDate deadline) {
+            this.deadline = deadline;
+            return this;
+        }
+
+        public Builder tags(List<String> tags) {
+            this.tags = tags != null ? tags : new ArrayList<>();
+            return this;
+        }
+
+        public JobPosting build() {
+            JobPosting jobPosting = new JobPosting(staff, title, description, category, location, salary, deadline);
+            if (tags != null && !tags.isEmpty()) {
+                jobPosting.setTags(tags);
+            }
+            return jobPosting;
+        }
+    }
+
+    public static Builder builder() {
+        return new Builder();
+    }
+    // ==========================================
 
     public Long getJobId() {
         return jobId;

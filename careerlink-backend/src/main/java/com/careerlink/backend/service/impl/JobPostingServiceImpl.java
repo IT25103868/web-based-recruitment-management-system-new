@@ -27,10 +27,19 @@ public class JobPostingServiceImpl implements JobPostingService {
                                        String location, Double salary, LocalDate deadline,
                                        List<String> tags) {
         validateRequired(title, deadline);
-        JobPosting jobPosting = new JobPosting(staff, title.trim(), description, category, location, salary, deadline);
-        if (tags != null) {
-            jobPosting.setTags(tags);
-        }
+
+        // DESIGN PATTERN: Builder Pattern usage for clean object creation
+        JobPosting jobPosting = JobPosting.builder()
+                .staff(staff)
+                .title(title.trim())
+                .description(description)
+                .category(category)
+                .location(location)
+                .salary(salary)
+                .deadline(deadline)
+                .tags(tags != null ? tags : new ArrayList<>())
+                .build();
+
         return jobPostingRepository.save(jobPosting);
     }
 
