@@ -78,9 +78,8 @@ public class JobPosting {
         this.deadline = deadline;
     }
 
-    // ==========================================
     // DESIGN PATTERN: Builder Pattern Implementation
-    // ==========================================
+
     public static class Builder {
         private Staff staff;
         private String title;
